@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eaglercraft 1.14</title>
+    <style>
+      :root {
+        --bg: #0a0a0f;
+        --panel: #141922;
+        --panel-2: #1d2633;
+        --text: #f2f6ff;
+        --muted: #b8bfd4;
+        --accent: #5da1ff;
+        --accent-strong: #2f78ff;
+        --warning: #ffdd99;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        background: radial-gradient(circle at top, #1d283d 0%, var(--bg) 58%);
+        color: var(--text);
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        padding: 24px;
+      }
+
+      .launcher {
+        width: min(640px, 100%);
+        background: rgba(20, 25, 34, 0.94);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+        padding: 32px 28px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 3vw, 3rem);
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 0 0 18px;
+      }
+
+      .launch-btn {
+        display: inline-block;
+        background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 14px 22px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 12px 28px rgba(47, 120, 255, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .launch-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 34px rgba(47, 120, 255, 0.45);
+      }
+
+      .warning {
+        margin-top: 22px;
+        padding: 12px 14px;
+        border-left: 4px solid var(--warning);
+        background: rgba(255, 221, 153, 0.08);
+        color: var(--warning);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="launcher">
+      <h1>Eaglercraft 1.14</h1>
+      <p>One-click launch for the browser client.</p>
+      <p>This project needs to be served over HTTP to run properly. Open the game page in the browser and let it boot.</p>
+
+      <a class="launch-btn" id="launchGame" href="./target_teavm_javascript/javascript/index.html">Launch Game</a>
+
+      <p class="warning">
+        If you open this page directly as a local file, the browser will block the game. Use a local web server instead, such as:<br>
+        <code>python3 -m http.server 8000</code>
+      </p>
+    </main>
+
+    <script>
+      const target = "./target_teavm_javascript/javascript/index.html";
+      const launchButton = document.getElementById("launchGame");
+
+      launchButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.location.href = target;
+      });
+
+      if (window.location.protocol !== "file:") {
+        setTimeout(function () {
+          window.location.href = target;
+        }, 900);
+      }
+    </script>
+  </body>
+</html>
